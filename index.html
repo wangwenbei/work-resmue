@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+</head>
+<link rel="stylesheet" href="css/swiper.min.css">
+<link rel="stylesheet" href="css/animate.css">
+<link rel="stylesheet" href="css/reset.min.css">
+<link rel="stylesheet" href="css/index.css">
+<script>
+    //求各个设备的根元素字体大小
+    //参照644/320=100/50(fs)
+    //各个设备宽度的缩放倍数=各个设备的根元素字体大小的缩放倍数
+    var desW=640;//设计稿的宽度
+    var winW=document.documentElement.clientWidth;
+    document.documentElement.style.fontSize=winW/desW*100+'px';
+
+
+</script>
+<body>
+ <article class="main">
+     <div class="music">
+         <audio src="audio/b.mp3" preload="none" loop id="beyond">
+             <!--controls 显示用户操作界面
+             metadata 只加载元数据
+             auto 提前进行预加载所有的音频文件
+             none不提前进行预加载
+             loop是否循环播放
+             -->
+         </audio>
+     </div>
+     <div class="swiper-container">
+         <div class="swiper-wrapper">
+             <div class="swiper-slide slide1" id="page1" >
+                <div class="photo" id="photo">
+                    <img src="images/3_150115210016_5.gif" alt="" >
+                </div>
+                 <div class="resume" id="resume">
+                     <span>个</span>
+                     <span>人</span>
+                     <span>简</span>
+                     <span>历</span>
+                 </div>
+
+             </div>
+             <div class="swiper-slide slide2" id="page2">
+               <div class="xx"><img src="images/bg21.png" alt=""></div>
+               <div class="jb">
+                   <!--<img src="images/3a.png" alt="">-->
+                   <div class="res">
+                   <h2>基本信息<br/>essential information</h2>
+                   <ul>
+                       <li>姓名: 王文蓓</li>
+                       <li>性别: 女</li>
+                       <li>年龄: 23</li>
+                       <li>手机号: 15034561720</li>
+                       <li>QQ: 964110752</li>
+                       <li>邮箱: 964110752@qq.com</li>
+                   </ul>
+                       </div>
+
+                   <!--<img src="images/3aa.png" alt="">-->
+               </div>
+             </div>
+             <div class="swiper-slide slide3" id="page3">
+                 <div class="md">
+                     <div class="b">
+                         <span>HTML5</span>
+                         <span>JS</span>
+                         <span>NODE</span>
+                         <span>ANGULAR</span>
+                         <span>APP</span>
+
+                     </div>
+                     <div class="pic">
+                     </div>
+                     <div class="cc">
+                         <!--<span>HTML5</span>-->
+                         <img src="images/blue.jpg" alt="">
+                         <img src="images/pink.jpg" alt="">
+                         <img src="images/red.jpg" alt="">
+                         <img src="images/green.jpg" alt="">
+                         <img src="images/yellow.jpg" alt="">
+                     </div>
+
+                     <div class="pad">
+                     <img src="images/html5.png" alt="">
+                     <img src="images/js.png" alt="">
+                     <img src="images/node.png" alt="">
+                     <img src="images/react.png" alt="">
+                     <img src="images/app.png" alt="">
+                     </div>
+                 </div>
+                 </div>
+             <div class="swiper-slide slide4" id="page4">
+                 <section class="cube">
+                     <span>可以滑动哦!</span>
+                     <ul class="cubeBox swiper-no-swiping">
+                         <li><img src="images/zf_cube1.png" alt=""></li>
+                         <li><img src="images/zf_cube2.png" alt=""></li>
+                         <li><img src="images/zf_cube3.png" alt=""></li>
+                         <li><img src="images/zf_cube4.png" alt=""></li>
+                         <li><img src="images/zf_cube5.png" alt=""></li>
+                         <li><img src="images/zf_cube6.png" alt=""></li>
+
+                     </ul>
+                 </section>
+
+             </div>
+
+             <div class="swiper-slide slide5" id="page5">
+                 <div class="bg">
+                     <img src="images/me.png" alt="">
+                     <img src="images/4img.png" alt="">
+                     <span class="aa">
+
+                     </span>
+
+                 </div>
+             </div>
+             <div class="swiper-slide slide6" id="page6">
+                 <div class="last">
+                 <img src="images/ewm.png" alt="">
+                 <img src="images/1234.png" alt="">
+                     <img src="images/wx-sm.png" alt="">
+                     <span>
+                         THANKS FOR WATCHING
+                     </span>
+                 </div>
+
+             </div>
+         </div>
+     </div>
+ </article>
+
+</body>
+</html>
+<script src="js/swiper.min.js"></script>
+<script src="js/zepto.min.js"></script>
+<script src="js/cube.js"></script>
+<script>
+    var mySwiper=new Swiper(".swiper-container",{
+        direction:'vertical',
+        loop:true,
+        effect : 'coverflow',
+        onTransitionEnd:function (swiper) {
+            var curIndex = swiper.activeIndex;
+            /*返回当前活动块的索引(如果往下滑,上一个滑块的索引,如果上往上滑,则是下一个滑块的索引)*/
+            //console.log(curIndex);
+            var slides = swiper.slides;//获得所有滑块
+            [].forEach.call(slides, function (item, index) {
+                item.id = '';
+                if(index==curIndex){
+                    if(index==0){
+                        item.id='page'+(slides.length-2);
+                    }else if(index==slides.length-1){
+                        item.id='page1';
+                    }else{
+                        item.id='page'+curIndex;
+                    }
+
+                    if(index==5){
+                        var aa=document.getElementsByClassName('aa')[0];
+                        aa.innerHTML='';
+                        var str='  我上班就是为了挣钱不要跟我谈理想我的理想就是不上班。O(∩_∩)O';
+                        var n=0;
+                            window.setTimeout(function () {
+                          var timer=window.setInterval(function () {
+                                aa.innerHTML+=str.charAt(n);
+                                if(n==str.length){
+                                    window.clearInterval(timer);
+                                }
+                                n++;
+
+
+                            },150)
+                        },1000)
+
+                    }
+                }
+
+
+            })
+        }
+//        onInit:function (swiper) {
+//            var slides=swiper.slides;
+//            slides[0].id='page1';
+//        }
+    });
+    var music=document.querySelector(".music");
+    var Blue=document.querySelector('#beyond');
+    window.setTimeout(function () {
+        Blue.play();
+        /*边缓冲边播放*/
+        Blue.addEventListener('canplay',function () {
+            music.style.opacity=1;
+            music.className="music musicCur";
+        },false)
+    },1000);
+    music.addEventListener('click',function () {
+        if(beyond.paused){ //deyond.paused 为 true是停止 false是播放
+            beyond.play();
+            music.className='music musicCur';
+        }else {
+            beyond.pause();
+            music.className='music';
+        }
+    });
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
